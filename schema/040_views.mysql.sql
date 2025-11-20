@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  device_fingerprints
 -- Contract view for [device_fingerprints]
@@ -17,7 +17,7 @@ SELECT
   last_ip_key_version
 FROM device_fingerprints;
 
--- Auto-generated from schema-views-mysql.psd1 (map@db2f8b8)
+-- Auto-generated from schema-views-mysql.psd1 (map@62c9c93)
 -- engine: mysql
 -- table:  device_fingerprints_risk_recent
 -- Devices with elevated risk seen in last 30 days

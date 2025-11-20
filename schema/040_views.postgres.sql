@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  device_fingerprints
 -- Contract view for [device_fingerprints]
@@ -17,7 +17,7 @@ SELECT
   last_ip_key_version
 FROM device_fingerprints;
 
--- Auto-generated from schema-views-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-views-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  device_fingerprints_risk_recent
 -- Devices with elevated risk seen in last 30 days

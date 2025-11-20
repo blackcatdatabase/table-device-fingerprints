@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  device_fingerprints
 CREATE INDEX IF NOT EXISTS idx_df_user ON device_fingerprints (user_id);
