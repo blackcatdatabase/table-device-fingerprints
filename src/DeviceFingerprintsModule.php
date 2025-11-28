@@ -32,15 +32,49 @@ final class DeviceFingerprintsModule implements ModuleInterface
         $table = SqlIdentifier::qi($db, $this->table());
         $view  = SqlIdentifier::qi($db, self::contractView());
 
+        if ($d->isMysql()) {
+            $createViewSql = <<<'SQL'
+CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_device_fingerprints AS
+SELECT
+  id,
+  user_id,
+  fingerprint_hash,
+  UPPER(HEX(fingerprint_hash)) AS fingerprint_hash_hex,
+  attributes,
+  risk_score,
+  first_seen,
+  last_seen,
+  last_ip_hash,
+  UPPER(HEX(last_ip_hash)) AS last_ip_hash_hex,
+  last_ip_key_version
+FROM device_fingerprints;
+SQL;
+        } else {
+            $createViewSql = <<<'SQL'
+CREATE OR REPLACE VIEW vw_device_fingerprints AS
+SELECT
+  id,
+  user_id,
+  fingerprint_hash,
+  UPPER(encode(fingerprint_hash, 'hex')) AS fingerprint_hash_hex,
+  attributes,
+  risk_score,
+  first_seen,
+  last_seen,
+  last_ip_hash,
+  UPPER(encode(last_ip_hash, 'hex')) AS last_ip_hash_hex,
+  last_ip_key_version
+FROM device_fingerprints;
+SQL;
+        }
+
         if (\class_exists('\\BlackCat\\Database\\Support\\DdlGuard')) {
-            (new \BlackCat\Database\Support\DdlGuard($db, $d))->applyCreateView(
-                "CREATE VIEW {$view} AS SELECT * FROM {$table}"
-            );
+            (new \BlackCat\Database\Support\DdlGuard($db, $d))->applyCreateView($createViewSql);
         } else {
             // Prefer CREATE OR REPLACE VIEW (gentle on dependencies)
-            $sql = "CREATE OR REPLACE VIEW {$view} AS SELECT * FROM {$table}";
-            $db->exec($sql);
+            $db->exec($createViewSql);
         }
+
     }
 
     public function upgrade(Database $db, SqlDialect $d, string $from): void
@@ -69,6 +103,13 @@ final class DeviceFingerprintsModule implements ModuleInterface
 
         // Quick index/FK check – generator injects names (case-sensitive per DB)
         $expectedIdx = [ 'idx_df_user_last_seen' ];
+        if ($d->isMysql()) {
+            // Drop PG-only index naming patterns (e.g., GIN/GiST)
+            $expectedIdx = array_values(array_filter(
+                $expectedIdx,
+                static fn(string $n): bool => !str_starts_with($n, 'gin_') && !str_starts_with($n, 'gist_')
+            ));
+        }
         $expectedFk  = [ 'fk_df_user' ];
 
         $haveIdx = $hasTable ? SchemaIntrospector::listIndexes($db, $d, $table)     : [];
