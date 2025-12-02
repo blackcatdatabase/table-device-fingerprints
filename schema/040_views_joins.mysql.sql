@@ -1,7 +1,7 @@
--- Auto-generated from joins-mysql.psd1 (map@mtime:2025-11-27T17:49:37Z)
+-- Auto-generated from joins-mysql.yaml (map@94ebe6c)
 -- engine: mysql
--- view:   device_fingerprints_risk_recent
--- Devices with elevated risk seen in last 30 days
+-- view:   device_risk_recent
+
 CREATE OR REPLACE ALGORITHM=TEMPTABLE SQL SECURITY INVOKER VIEW vw_device_risk_recent AS
 SELECT
   d.id,
