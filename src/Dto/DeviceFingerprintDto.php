@@ -18,7 +18,9 @@ final class DeviceFingerprintDto implements \JsonSerializable {
         public readonly \DateTimeImmutable $firstSeen,
         public readonly \DateTimeImmutable $lastSeen,
         public readonly ?string $lastIpHash,
-        public readonly ?string $lastIpKeyVersion
+        public readonly ?string $lastIpKeyVersion,
+        public readonly \DateTimeImmutable $createdAt,
+        public readonly \DateTimeImmutable $updatedAt
     ) {}
 
     /** Suitable for serialization/logging (without large blobs). */

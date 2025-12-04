@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.yaml (map@94ebe6c)
+-- Auto-generated from schema-map-postgres.yaml (map@4ae85c5)
 -- engine: postgres
 -- table:  device_fingerprints
 
@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS device_fingerprints (
   last_seen  TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   last_ip_hash BYTEA NULL,
   last_ip_key_version VARCHAR(64) NULL,
+  created_at TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  updated_at TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   CONSTRAINT uq_device_fp UNIQUE (fingerprint_hash),
   CONSTRAINT chk_df_risk CHECK (risk_score IS NULL OR (risk_score BETWEEN 0 AND 100))
 );

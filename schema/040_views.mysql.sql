@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-mysql.yaml (map@94ebe6c)
+-- Auto-generated from schema-views-mysql.yaml (map@4ae85c5)
 -- engine: mysql
 -- table:  device_fingerprints
 
@@ -15,5 +15,7 @@ SELECT
   last_seen,
   last_ip_hash,
   UPPER(HEX(last_ip_hash)) AS last_ip_hash_hex,
-  last_ip_key_version
+  last_ip_key_version,
+  created_at,
+  updated_at
 FROM device_fingerprints;

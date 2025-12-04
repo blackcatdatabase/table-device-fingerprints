@@ -46,7 +46,9 @@ SELECT
   last_seen,
   last_ip_hash,
   UPPER(HEX(last_ip_hash)) AS last_ip_hash_hex,
-  last_ip_key_version
+  last_ip_key_version,
+  created_at,
+  updated_at
 FROM device_fingerprints;
 SQL;
         } else {
@@ -63,7 +65,9 @@ SELECT
   last_seen,
   last_ip_hash,
   UPPER(encode(last_ip_hash, 'hex')) AS last_ip_hash_hex,
-  last_ip_key_version
+  last_ip_key_version,
+  created_at,
+  updated_at
 FROM device_fingerprints;
 SQL;
         }

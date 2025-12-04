@@ -1,4 +1,4 @@
--- Auto-generated from schema-views-postgres.yaml (map@94ebe6c)
+-- Auto-generated from schema-views-postgres.yaml (map@4ae85c5)
 -- engine: postgres
 -- table:  device_fingerprints
 
@@ -15,5 +15,7 @@ SELECT
   last_seen,
   last_ip_hash,
   UPPER(encode(last_ip_hash, 'hex')) AS last_ip_hash_hex,
-  last_ip_key_version
+  last_ip_key_version,
+  created_at,
+  updated_at
 FROM device_fingerprints;
