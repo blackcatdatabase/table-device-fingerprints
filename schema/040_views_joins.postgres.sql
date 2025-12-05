@@ -1,6 +1,6 @@
 -- Auto-generated from joins-postgres.yaml (map@85230ed)
 -- engine: postgres
--- view:   device_fingerprints_risk_recent
+-- view:   device_risk_recent
 
 -- Devices with elevated risk seen in last 30 days
 CREATE OR REPLACE VIEW vw_device_risk_recent AS
