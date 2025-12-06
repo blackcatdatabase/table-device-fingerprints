@@ -1,6 +1,7 @@
--- Auto-generated from schema-map-mysql.psd1 (map@62c9c93)
+-- Auto-generated from schema-map-mysql.yaml (map@sha1:5E62933580349BE7C623D119AC9D1301A62F03EF)
 -- engine: mysql
 -- table:  device_fingerprints
+
 CREATE TABLE IF NOT EXISTS device_fingerprints (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   user_id BIGINT UNSIGNED NULL,
@@ -11,6 +12,8 @@ CREATE TABLE IF NOT EXISTS device_fingerprints (
   last_seen DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
   last_ip_hash BINARY(32) NULL,
   last_ip_key_version VARCHAR(64) NULL,
+  created_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  updated_at DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   UNIQUE KEY uq_device_fp (fingerprint_hash),
   INDEX idx_df_user      (user_id),
   INDEX idx_df_last_seen (last_seen)
