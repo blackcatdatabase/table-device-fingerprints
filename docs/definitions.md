@@ -5,14 +5,14 @@ Known device/browser fingerprints with derived risk scoring.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| attributes | JSONB | YES |  | JSON blob with device characteristics. |
-| fingerprint_hash | BYTEA | NO |  | Stable hash of the fingerprint payload. |
-| first_seen | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Timestamp when the device first appeared. |
+| attributes | JSON | YES |  | JSON blob with device characteristics. |
+| fingerprint_hash | BINARY(32) | NO |  | Stable hash of the fingerprint payload. |
+| first_seen | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Timestamp when the device first appeared. |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| last_ip_hash | BYTEA | YES |  | Hashed last known IP. |
+| last_ip_hash | BINARY(32) | YES |  | Hashed last known IP. |
 | last_ip_key_version | VARCHAR(64) | YES |  | Key version used for last_ip_hash. |
-| last_seen |  | NO | CURRENT_TIMESTAMP(6) | Last time the device was observed. |
-| risk_score | SMALLINT | YES |  | 0-100 risk score derived from signals. |
+| last_seen | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Last time the device was observed. |
+| risk_score | TINYINT | YES |  | 0-100 risk score derived from signals. |
 | user_id | BIGINT | YES |  | Related user (FK users.id), nullable. |
 
 ## Engine Details
@@ -62,7 +62,7 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_device_fingerprints | mysql | algorithm=MERGE, security=INVOKER | [packages\device-fingerprints\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/device-fingerprints/schema/040_views.mysql.sql) |
-| vw_device_risk_recent | mysql | algorithm=TEMPTABLE, security=INVOKER | [packages\device-fingerprints\schema\040_views_joins.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/device-fingerprints/schema/040_views_joins.mysql.sql) |
-| vw_device_fingerprints | postgres |  | [packages\device-fingerprints\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/device-fingerprints/schema/040_views.postgres.sql) |
-| vw_device_risk_recent | postgres |  | [packages\device-fingerprints\schema\040_views_joins.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/device-fingerprints/schema/040_views_joins.postgres.sql) |
+| vw_device_fingerprints | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_device_risk_recent | mysql | algorithm=TEMPTABLE, security=INVOKER | [schema\040_views_joins.mysql.sql](schema\040_views_joins.mysql.sql) |
+| vw_device_fingerprints | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
+| vw_device_risk_recent | postgres |  | [schema\040_views_joins.postgres.sql](schema\040_views_joins.postgres.sql) |
