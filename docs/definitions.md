@@ -5,14 +5,14 @@ Known device/browser fingerprints with derived risk scoring.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| attributes | JSON | YES |  | JSON blob with device characteristics. |
-| fingerprint_hash | BINARY(32) | NO |  | Stable hash of the fingerprint payload. |
-| first_seen | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Timestamp when the device first appeared. |
+| attributes | mysql: JSON / postgres: JSONB | YES |  | JSON blob with device characteristics. |
+| fingerprint_hash | mysql: BINARY(32) / postgres: BYTEA | NO |  | Stable hash of the fingerprint payload. |
+| first_seen | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | Timestamp when the device first appeared. |
 | id | BIGINT | NO |  | Surrogate primary key. |
-| last_ip_hash | BINARY(32) | YES |  | Hashed last known IP. |
+| last_ip_hash | mysql: BINARY(32) / postgres: BYTEA | YES |  | Hashed last known IP. |
 | last_ip_key_version | VARCHAR(64) | YES |  | Key version used for last_ip_hash. |
 | last_seen | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | Last time the device was observed. |
-| risk_score | TINYINT | YES |  | 0-100 risk score derived from signals. |
+| risk_score | mysql: TINYINT / postgres: SMALLINT | YES |  | 0-100 risk score derived from signals. |
 | user_id | BIGINT | YES |  | Related user (FK users.id), nullable. |
 
 ## Engine Details
