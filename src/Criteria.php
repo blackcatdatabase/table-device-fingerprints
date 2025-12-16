@@ -41,11 +41,11 @@ final class Criteria extends BaseCriteria
         return [ 'last_ip_key_version' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'user_id', 'risk_score', 'first_seen', 'last_seen', 'last_ip_key_version', 'created_at', 'updated_at' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'user_id', 'risk_score', 'first_seen', 'last_seen', 'last_ip_key_version', 'created_at', 'updated_at' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):
