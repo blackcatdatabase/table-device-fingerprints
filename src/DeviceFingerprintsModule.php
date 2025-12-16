@@ -105,8 +105,8 @@ SQL;
         $hasTable = SchemaIntrospector::hasTable($db, $d, $table);
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
-        // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
-        $expectedIdx = [ 'idx_df_user_last_seen' ];
+        // Quick index/FK check - generator injects names (case-sensitive per DB)
+        $expectedIdx = [ 'idx_df_last_seen', 'idx_df_user', 'idx_df_user_last_seen' ];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)
             $expectedIdx = array_values(array_filter(
@@ -139,7 +139,7 @@ SQL;
             'columns'     => Definitions::columns(),
             'version'     => $this->version(),
             'dialects'    => [ 'mysql', 'postgres' ],
-            'indexes'     => [ 'idx_df_user_last_seen' ],
+            'indexes'     => [ 'idx_df_last_seen', 'idx_df_user', 'idx_df_user_last_seen' ],
             'foreignKeys' => [ 'fk_df_user' ],
         ];
     }
