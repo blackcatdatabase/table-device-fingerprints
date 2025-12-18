@@ -17,7 +17,7 @@ use BlackCat\Database\Support\DtoHydrator;
 final class DeviceFingerprintDtoMapper
 {
     /** @var array<string,string> Column -> DTO property */
-    private const COL_TO_PROP = [ 'id' => 'id', 'user_id' => 'userId', 'fingerprint_hash' => 'fingerprintHash', 'attributes' => 'attributes', 'risk_score' => 'riskScore', 'first_seen' => 'firstSeen', 'last_seen' => 'lastSeen', 'last_ip_hash' => 'lastIpHash', 'last_ip_key_version' => 'lastIpKeyVersion', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt' ];
+    private const COL_TO_PROP = [ 'id' => 'id', 'user_id' => 'userId', 'fingerprint_hash' => 'fingerprintHash', 'fingerprint_hash_key_version' => 'fingerprintHashKeyVersion', 'attributes' => 'attributes', 'risk_score' => 'riskScore', 'first_seen' => 'firstSeen', 'last_seen' => 'lastSeen', 'last_ip_hash' => 'lastIpHash', 'last_ip_key_version' => 'lastIpKeyVersion', 'created_at' => 'createdAt', 'updated_at' => 'updatedAt' ];
 
     /** @var string[] */
     private const BOOL_COLS   = [];
