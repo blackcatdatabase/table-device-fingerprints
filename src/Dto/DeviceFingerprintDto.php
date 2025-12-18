@@ -13,6 +13,7 @@ final class DeviceFingerprintDto implements \JsonSerializable {
         public readonly int $id,
         public readonly ?int $userId,
         public readonly string $fingerprintHash,
+        public readonly ?string $fingerprintHashKeyVersion,
         public readonly array|null $attributes,
         public readonly ?int $riskScore,
         public readonly \DateTimeImmutable $firstSeen,
