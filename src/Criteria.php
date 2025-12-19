@@ -32,20 +32,20 @@ final class Criteria extends BaseCriteria
     /** Columns that are safe to use inside WHERE filters. */
     protected function filterable(): array
     {
-        return [ 'id', 'user_id', 'fingerprint_hash', 'attributes', 'risk_score', 'first_seen', 'last_seen', 'last_ip_hash', 'last_ip_key_version', 'created_at', 'updated_at' ];
+        return [ 'id', 'user_id', 'fingerprint_hash', 'fingerprint_hash_key_version', 'attributes', 'risk_score', 'first_seen', 'last_seen', 'last_ip_hash', 'last_ip_key_version', 'created_at', 'updated_at' ];
     }
 
     /** Columns used for full-text LIKE/ILIKE searches. */
     protected function searchable(): array
     {
-        return [ 'last_ip_key_version' ];
+        return [ 'fingerprint_hash_key_version', 'last_ip_key_version' ];
     }
 
-/** Columns allowed in ORDER BY (falls back to filterable() when empty). */
-protected function sortable(): array
-{
-    return [ 'id', 'user_id', 'risk_score', 'first_seen', 'last_seen', 'last_ip_key_version', 'created_at', 'updated_at' ];
-}
+    /** Columns allowed in ORDER BY (falls back to filterable() when empty). */
+    protected function sortable(): array
+    {
+        return [ 'id', 'user_id', 'fingerprint_hash_key_version', 'risk_score', 'first_seen', 'last_seen', 'last_ip_key_version', 'created_at', 'updated_at' ];
+    }
 
     /**
      * Whitelist of joinable entities (for safe ->join() usage):

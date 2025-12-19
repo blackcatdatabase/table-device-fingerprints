@@ -1,6 +1,6 @@
 # 📦 Device Fingerprints
 
-> Auto-generated from [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) (map@sha1:5221bb5c65d0fbe010594635f9efb6fc13c307b2). Do not edit manually.
+> Auto-generated from [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) (map@sha1:260cf51de6e2c742030665b35b370cdae36de2c6). Do not edit manually.
 > Targets: PHP 8.3; MySQL 8.x / MariaDB 10.4; Postgres 15+.
 
 ![PHP](https://img.shields.io/badge/PHP-8.3-blueviolet) ![DB](https://img.shields.io/badge/DB-MySQL%20%7C%20MariaDB%20%7C%20Postgres-informational) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-success)
@@ -11,7 +11,7 @@
 
 > **Schema snapshot**
 > Map: [schema-map-postgres.yaml](https://github.com/blackcatacademy/blackcat-database/blob/main/scripts/schema/schema-map-postgres.yaml) · Docs: [docs/definitions.md](docs/definitions.md) · Drift warnings: 0
-> Lineage: 1 outbound / 0 inbound · ✅ No engine drift detected · Index coverage: ready · PII flags: 2 · Changelog: fresh
+> Lineage: 1 outbound / 0 inbound · ✅ No engine drift detected · Index coverage: ready · PII flags: 3 · Changelog: fresh
 
 ## Quick Links
 | What | Link | Notes |
@@ -43,7 +43,7 @@
 ## At a Glance
 | Metric | Count |
 | --- | --- |
-| Columns | **11** |
+| Columns | **14** |
 | Indexes | **6** |
 | Foreign keys | **3** |
 | Unique keys | **3** |
@@ -52,13 +52,13 @@
 | Views | **6** |
 | Seeds | **0** |
 | Drift warnings | **0** |
-| PII flags | **2** |
+| PII flags | **3** |
 
 ## Summary
 | Item | Value |
 | --- | --- |
 | Table | device_fingerprints |
-| Schema files | **10** |
+| Schema files | **11** |
 | Views | **4** |
 | Seeds | **0** |
 | Docs | **present** |
@@ -98,6 +98,8 @@ _No engine differences detected._
 ## Constraints Snapshot
 - `first_seen` – default=CURRENT_TIMESTAMP(6)
 - `last_seen` – default=CURRENT_TIMESTAMP(6)
+- `created_at` – default=CURRENT_TIMESTAMP(6)
+- `updated_at` – default=CURRENT_TIMESTAMP(6)
 
 ## Schema Files
 | File | Engine |
@@ -112,6 +114,7 @@ _No engine differences detected._
 | [040_views_joins.postgres.sql](schema/040_views_joins.postgres.sql) | postgres |
 | [040_views.mysql.sql](schema/040_views.mysql.sql) | mysql |
 | [040_views.postgres.sql](schema/040_views.postgres.sql) | postgres |
+| [encryption-map.json](schema/encryption-map.json) |  |
 
 ## Views
 | File | Engine | Source |
@@ -126,6 +129,7 @@ _No seed files found._
 
 ## Compliance Notes
 > ⚠️ Potential PII/secret fields – review retention/encryption policies:
+- fingerprint_hash_key_version (key)
 - id (key)
 - last_ip_key_version (key)
 

@@ -1,0 +1,50 @@
+{
+  "tables": {
+    "device_fingerprints": {
+      "columns": {
+        "attributes": {
+          "strategy": "passthrough"
+        },
+        "created_at": {
+          "strategy": "passthrough"
+        },
+        "fingerprint_hash": {
+          "context": "db.hmac.device_fingerprints.fingerprint_hash",
+          "key_version_column": "fingerprint_hash_key_version",
+          "strategy": "hmac",
+          "write_key_version": true
+        },
+        "fingerprint_hash_key_version": {
+          "strategy": "passthrough"
+        },
+        "first_seen": {
+          "strategy": "passthrough"
+        },
+        "id": {
+          "strategy": "passthrough"
+        },
+        "last_ip_hash": {
+          "context": "db.hmac.device_fingerprints.last_ip_hash",
+          "key_version_column": "last_ip_key_version",
+          "strategy": "hmac",
+          "write_key_version": true
+        },
+        "last_ip_key_version": {
+          "strategy": "passthrough"
+        },
+        "last_seen": {
+          "strategy": "passthrough"
+        },
+        "risk_score": {
+          "strategy": "passthrough"
+        },
+        "updated_at": {
+          "strategy": "passthrough"
+        },
+        "user_id": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}

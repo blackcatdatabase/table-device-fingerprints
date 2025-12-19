@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-mysql.yaml (map@sha1:09DF9CA612D1573E058190CC207FA257C05AEC1F)
+-- Auto-generated from schema-map-mysql.yaml (map@sha1:0D716345C0228A9FD8972A3D31574000D05317DB)
 -- engine: mysql
 -- table:  device_fingerprints
 
@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS device_fingerprints (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   user_id BIGINT UNSIGNED NULL,
   fingerprint_hash BINARY(32) NOT NULL,
+  fingerprint_hash_key_version VARCHAR(64) NULL,
   attributes JSON NULL,
   risk_score TINYINT UNSIGNED NULL,
   first_seen DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
